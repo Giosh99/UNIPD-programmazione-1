@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int A[3][4][5], value;
+    char character;
+    for(int strato = 0; strato<3; strato++) {// R=(0<=strato<=3)
+        for(int h = 0;h<4;h++) {
+            for(int v = 0; v<5;v++) {
+                cin>> A[strato][h][v];
+            }
+        }
+    }
+    cin>> character;
+    cout<<"start"<<endl;
+    if(character == 'V') {
+        cin >>value;
+        for(int a = 0; a<3; a++) {
+            for(int b =0; b<4;b++) {
+                cout<<A[a][b][value]<<" ";
+            }
+            cout<<""<<endl;
+        }
+    }
+    else if(character == 'H') {
+        cin >>value;
+        for(int a = 0; a<3; a++) {
+            for(int b =0; b<5;b++) {
+                cout<<A[a][value][b]<<" ";
+            }
+            cout<<""<<endl;
+        } 
+    }
+    cout<<"end"<<endl;
+    return 0;
+}
