@@ -23,11 +23,8 @@ void build_BST(nodo*&r, int x)
 		r=r->right;
 	      else
 		{r->right=new nodo(x); continua=false;}
-
 	}
-
       r=q;
-
     }
 }
 void stampa_lin(nodo*r)
@@ -44,56 +41,25 @@ void stampa_lin(nodo*r)
   cout<<'_';
 }
 
-nodo* trova(nodo* r ,int n)
-{
+//PRE=(albero(r) è benformato,n>0)
+
+nodo* trova(nodo*r,int n) {
     
-     
-    if (r)
-    {
-        nodo* t;
-        t= r-> left;
-        if (n!= 0)
-        {
-            //cout << r-> info<< " " << n <<  endl;
-           
-            if (!t)
-            {
-                if (n==1)
-                {
-                    return r;
-                }
-                n--;
-                return  trova (r-> right, n);
-                
-            }
-            else
-            {
-                
-                if (t-> num + 1 == n)
-                    return r;
-                else if  (t-> num < n)
-                {
-                n= n- t-> num-1;
-                return  trova (r-> right, n);
-                }
-                
-                else
-                {
-                return trova ( r-> left, n);
-                n--;
-                }
-            
-            }
-            
-        }
-        else 
-        return r;
-        
-    }
-    else
-    return 0;
-    
+    if(!r)
+        return 0;
+    if(r->num==n) return r;
+    int x;
+    if(r->left)
+        x = r->left->num;
+    else 
+        x = 0;
+    if(n>x) 
+        trova(r->right, n-x);
+    else 
+         trova(r->left,n);
+       
 }
+//POST=(se albero(r) contiene almeno n nodi, restituisce il puntatore al nodo numero n nell’ordinamento determinato dalla visita postfissadi albero(r), altrimenti restituisce 0)
 main()
 {
   cout<<"start"<<endl;
