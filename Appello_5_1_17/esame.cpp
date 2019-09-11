@@ -90,6 +90,38 @@ nodo_x* clone(nodo_x* a)//fa copia di lista di tipo nodo_x
 }
 //INIZIO
 void partiziona_it(nodo_x * N, int k){
+    nodo *n= N->fix->primo;
+    nodo *first = N->fix->primo;
+    int count = N->fix->n_ele/k;
+    int resto = N->fix->n_ele%k;
+    int c = k;
+    //cout<<count<<endl;
+    while(count>0||resto>0) {
+        if(N->fix->n_ele<k)
+            return;
+        while(c>1) {
+            n = n->next;
+            c--;
+        }
+        c = k;
+        if(n->next) {
+            nodo *tmp = n->next;
+            nodo_x *x = new nodo_x(new FIFOX(tmp,N->fix->ultimo),0);
+            n->next = 0;
+            N->next = x;
+            int ele = N->fix->n_ele-k;
+            cout<<"ele "<<ele<<endl;
+            N = N->next;
+            N->fix->n_ele = ele;
+            n = N->fix->primo;
+            if(count==0)
+                resto--;
+            else
+                count--;
+            first = n;
+        }
+        else return;
+    }
 }
 
 
@@ -105,7 +137,7 @@ int main()
  stampaT(T1,0);
  partiziona_it(T1,k);
  stampaT(T1,0);
-partiziona_ric(T2,k);
- stampaT(T2,0);
+//partiziona_ric(T2,k);
+ //stampaT(T2,0);
  cout<<"end"<<endl;
 }
