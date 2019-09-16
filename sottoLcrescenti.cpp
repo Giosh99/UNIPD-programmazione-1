@@ -79,25 +79,31 @@ void push_end(doppioN &L, nodo *n)
     }
     cout << "hola" << endl;
 }
-doppioN Fiter(nodo*L){
-    doppioN A=0;
-    while(L){
-        int lung=1;
-        nodo*temp=L;
-        while(temp->next && temp->info<=temp->next->info){
-            temp=temp->next;
+doppioN Fiter(nodo *L)
+{
+    doppioN A = 0;
+    while (L)
+    {
+        int lung = 1;
+        nodo *temp = L;
+        while (temp->next && temp->info <= temp->next->info)
+        {
+            temp = temp->next;
             lung++;
         }
-        if(!A.inizio){
-            A=doppioN(L,temp,lung);
+        if (!A.inizio)
+        {
+            A = doppioN(L, temp, lung);
         }
-        else if(A.lung<lung){
-            A.inizio=L;
-            A.fine=temp;
-            A.lung=lung;
+        else if (A.lung < lung)
+        {
+            A.inizio = L;
+            A.fine = temp;
+            A.lung = lung;
         }
-        else{
-            L=temp->next;
+        else
+        {
+            L = temp->next;
         }
     }
     return A;
